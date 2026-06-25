@@ -60,30 +60,52 @@
         .main-heading { font-family: var(--font-serif); font-size: clamp(28px, 5vw, 52px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; text-align: center; max-width: 900px; }
         .context-text { font-family: var(--font-sans); font-size: 15px; line-height: 1.6; max-width: 650px; color: #4a4a4a; text-align: center; margin-bottom: 40px; }
 
-        /* ── SEÇÃO 1: GALERIA DE MANUSCRITOS RESGATADOS ── */
-        #manuscripts-gallery { background-color: var(--bg-paper); border-bottom: 1px dashed rgba(0,0,0,0.15); }
+        /* ── NOVA SEÇÃO: BIOGRAFIA DO TITULAR ── */
+        #biography-section { background-color: var(--bg-paper); border-bottom: 1px dashed rgba(0,0,0,0.15); }
         
-        .gallery-grid {
-            display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; max-width: 1100px;
+        .bio-wrapper {
+            display: flex; flex-wrap: wrap; gap: 50px; align-items: center; justify-content: center;
+            width: 100%; max-width: 950px; margin-top: 20px;
         }
 
+        .author-photo-frame {
+            position: relative; padding: 15px; background: #fff;
+            border: 1px solid #c8c3bc; box-shadow: 10px 10px 25px var(--shadow-gray);
+            transition: transform 0.3s;
+        }
+        .author-photo-frame:hover { transform: rotate(-1deg); }
+        
+        .author-photo {
+            width: 260px; height: 340px; object-fit: cover;
+            filter: sepia(40%) contrast(110%); /* Efeito de foto analógica antiga */
+            border: 1px solid #999;
+        }
+        
+        .photo-caption {
+            font-family: var(--font-typewriter); font-size: 11px; text-align: center;
+            margin-top: 10px; color: #555;
+        }
+
+        .bio-text-box { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px; }
+        .bio-header-title { font-family: var(--font-serif); font-size: 32px; font-weight: bold; border-bottom: 1px solid var(--dark-ink); padding-bottom: 10px; }
+        .bio-paragraph { font-size: 15px; line-height: 1.7; color: #2b2b2b; text-align: justify; }
+
+        /* ── SEÇÃO 1: GALERIA DE MANUSCRITOS ── */
+        #manuscripts-gallery { background-color: #ede9de; border-bottom: 1px dashed rgba(0,0,0,0.15); }
+        .gallery-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; max-width: 1100px; }
         .folder-card {
-            background: #fff; border: 1px solid #c8c3bc; padding: 25px;
-            width: 280px; height: 38px; min-height: 380px;
-            box-shadow: 8px 8px 25px var(--shadow-gray);
-            display: flex; flex-direction: column; justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+            background: #fff; border: 1px solid #c8c3bc; padding: 25px; width: 280px; min-height: 380px;
+            box-shadow: 8px 8px 25px var(--shadow-gray); display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;
         }
         .folder-card:hover { transform: translateY(-8px); box-shadow: 12px 12px 30px #b8b3aa; }
-
         .folder-tag { font-family: var(--font-typewriter); font-size: 11px; color: var(--accent-red); border-bottom: 1px solid #e8e4da; padding-bottom: 6px; }
         .folder-title { font-family: var(--font-serif); font-size: 20px; font-weight: bold; margin: 15px 0 10px; }
         .folder-desc { font-size: 13px; color: #555; line-height: 1.5; flex: 1; }
         .folder-status { font-family: var(--font-typewriter); font-size: 11px; border-top: 1px solid var(--dark-ink); padding-top: 10px; margin-top: auto; }
 
         /* ── SEÇÃO 2: INVENTÁRIO (MODELO IEB/USP) ── */
-        #inventory { background-color: #ede9de; border-bottom: 1px dashed rgba(0,0,0,0.15); }
+        #inventory { background-color: var(--bg-paper); border-bottom: 1px dashed rgba(0,0,0,0.15); }
         .table-wrapper { width: 100%; max-width: 1000px; overflow-x: auto; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .ieb-table { width: 100%; border-collapse: collapse; background-color: #fff; font-size: 14px; text-align: left; min-width: 800px; }
         .ieb-table th { background-color: var(--dark-ink); color: var(--bg-paper); font-family: var(--font-typewriter); font-weight: normal; padding: 14px 18px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
@@ -92,43 +114,24 @@
         .reference-code { font-family: var(--font-typewriter); color: var(--accent-red); font-weight: bold; }
         .doc-species { font-family: var(--font-typewriter); font-size: 11px; background: #f0ede4; padding: 2px 6px; border-radius: 3px; }
 
-        /* ── SEÇÃO 3: CARROSSEL DOS DIÁRIOS (ROLA PRO LADO!) ── */
+        /* ── SEÇÃO 3: CARROSSEL DOS DIÁRIOS ── */
         #diaries { background-color: #e6e1d6; }
-        
-        .album-scroll-wrapper {
-            width: 100%; max-width: 1000px; 
-            overflow-x: auto; overflow-y: hidden;
-            padding: 20px 0; scrollbar-width: none; 
-        }
+        .album-scroll-wrapper { width: 100%; max-width: 1000px; overflow-x: auto; overflow-y: hidden; padding: 20px 0; scrollbar-width: none; }
         .album-scroll-wrapper::-webkit-scrollbar { display: none; }
-        
         .album-track { display: flex; gap: 120px; padding: 20px; width: max-content; }
         .album-item { display: flex; flex-direction: column; width: 250px; flex-shrink: 0; }
-        
-        /* O Envelope Secreto do Arquivo */
         .envelope-zone { position: relative; width: 250px; height: 250px; cursor: pointer; }
-        
         .envelope-front {
-            position: absolute; inset: 0; background: #e0dacb;
-            border: 2px solid var(--dark-ink); box-shadow: 4px 4px 0 var(--dark-ink);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 5; padding: 20px; text-align: center; transition: box-shadow 0.2s, transform 0.3s;
+            position: absolute; inset: 0; background: #e0dacb; border: 2px solid var(--dark-ink); box-shadow: 4px 4px 0 var(--dark-ink);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; padding: 20px; text-align: center; transition: box-shadow 0.2s, transform 0.3s;
         }
         .envelope-front h3 { font-family: var(--font-typewriter); font-size: 14px; }
-        
         .paper-inside {
-            position: absolute; top: 10px; left: 10px; width: 230px; height: 230px;
-            background: #fff; border: 1px solid #999; z-index: 4; padding: 20px;
-            display: flex; flex-direction: column; justify-content: center;
-            font-family: var(--font-serif); font-size: 11px; line-height: 1.4;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            position: absolute; top: 10px; left: 10px; width: 230px; height: 230px; background: #fff; border: 1px solid #999; z-index: 4; padding: 20px;
+            display: flex; flex-direction: column; justify-content: center; font-family: var(--font-serif); font-size: 11px; line-height: 1.4; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
-
-        /* Efeito de puxar o papel para fora do envelope */
         .envelope-zone:hover .paper-inside { transform: translateY(-70px) rotate(-2deg); z-index: 6; }
         .envelope-zone:hover .envelope-front { box-shadow: 6px 6px 0 var(--accent-red); }
-
         .diary-meta { margin-top: 15px; font-family: var(--font-sans); }
         .diary-title { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
         .diary-date { font-family: var(--font-typewriter); font-size: 11px; color: var(--accent-red); }
@@ -142,22 +145,50 @@
             <span class="archive-subtitle">Gestão de Acervos Pessoais // Modelo de Extroversão</span>
         </div>
         <nav class="archive-nav">
-            <a href="#manuscripts-gallery">01. Manuscritos</a>
-            <a href="#inventory">02. Inventário Técnico</a>
-            <a href="#diaries">03. Diários do Fundo</a>
+            <a href="#biography-section">01. Titular</a>
+            <a href="#manuscripts-gallery">02. Manuscritos</a>
+            <a href="#inventory">03. Inventário Técnico</a>
+            <a href="#diaries">04. Diários</a>
         </nav>
     </header>
 
-    <!-- SEÇÃO 1: OS ROMANCES SALVOS DA FOGUEIRA -->
+    <!-- NOVA SEÇÃO INTEGRADA: BIOGRAFIA DO TITULAR -->
+    <section id="biography-section" class="section-container">
+        <span class="manifesto-label">Identificação do Titular // Ficha Técnica</span>
+        
+        <div class="bio-wrapper">
+            <!-- Moldura de Foto Antiga -->
+            <div class="author-photo-frame">
+                <!-- Imagem em domínio público do acervo histórico de Franz Kafka -->
+                <img class="author-photo" src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Kafka_1906.jpg" alt="Franz Kafka em 1906">
+                <div class="photo-caption">Fundo Franz Kafka // Registro: 1906</div>
+            </div>
+
+            <!-- Dados Biográficos Estilo Ficha do IEB -->
+            <div class="bio-text-box">
+                <h2 class="bio-header-title">Franz Kafka</h2>
+                <p class="bio-paragraph" style="font-family: var(--font-typewriter); font-size: 12px; color: var(--accent-red);">
+                    Praga, 1883 — Kierling, 1924
+                </p>
+                <p class="bio-paragraph">
+                    Doutor em Direito e funcionário de uma companhia de seguros, Kafka dividiu sua vida entre as obrigações bucráticas do mundo moderno e uma escrita obsessiva e solitária durante as madrugadas. Seus textos abordam temas complexos como o labirinto da burocracia, a alienação social, o isolamento existencial e o peso opressor das figuras de autoridade.
+                </p>
+                <p class="bio-paragraph">
+                    Antes de falecer precocemente vítima de tuberculose, o autor legou seus manuscritos e cadernos ao seu amigo íntimo Max Brod com uma instrução clara: queimar tudo sem ler. A recusa do amigo em cumprir o testamento salvou do esquecimento uma das produções intelectuais mais influentes da história da literatura mundial, hoje aberta para fins de pesquisa e extroversão.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: OS ROMANCES SALVOS DA FOGUEIRA -->
     <section id="manuscripts-gallery" class="section-container">
         <span class="manifesto-label">Série: Produção Literária Póstuma</span>
         <h1 class="main-heading">Os Romances Resgatados do Fogo</h1>
         <p class="context-text">
-            Em 1924, Kafka ordenou que toda sua obra inacabada fosse queimada. Esta seção reúne os dossiês das três grandes obras-primas salvas e processadas para acesso público universal.
+            Compilação dos dossiês das três grandes obras-primas salvas da destruição, processadas para preservação da memória e acesso público universal.
         </p>
 
         <div class="gallery-grid">
-            <!-- ROMANCE 1 -->
             <div class="folder-card">
                 <span class="folder-tag">CÓD: FK-ROM-01</span>
                 <h3 class="folder-title">O Processo</h3>
@@ -165,15 +196,13 @@
                 <div class="folder-status">✓ STATUS: SALVO / PUBLICADO</div>
             </div>
 
-            <!-- ROMANCE 2 -->
             <div class="folder-card">
                 <span class="folder-tag">CÓD: FK-ROM-02</span>
                 <h3 class="folder-title">O Castelo</h3>
-                <p class="folder-desc">Iniciado em 1922, o romance permaneceu literalmente inacabado, terminando no meio de uma frase. Retrata a luta burocrática e infinita do agrimensor K.</p>
+                <p class="folder-desc">Iniciado em 1922, o romance permaneceu inacabado, terminando subitamente no meio de uma frase. Retrata a luta burocrática e infinita do agrimensor K.</p>
                 <div class="folder-status">✓ STATUS: SALVO / PUBLICADO</div>
             </div>
 
-            <!-- ROMANCE 3 -->
             <div class="folder-card">
                 <span class="folder-tag">CÓD: FK-ROM-03</span>
                 <h3 class="folder-title">América</h3>
@@ -183,7 +212,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO 2: O INVENTÁRIO COMPLETO (SÉRIES ARQUIVÍSTICAS) -->
+    <!-- SEÇÃO 3: O INVENTÁRIO COMPLETO (SÉRIES ARQUIVÍSTICAS) -->
     <section id="inventory" class="section-container">
         <span class="manifesto-label">Modelo Regimental IEB/USP</span>
         <h2 class="main-heading">Quadro de Arranjo e Inventário Mínimo</h2>
@@ -229,7 +258,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO 3: CARROSSEL INFINITO DE FRAGMENTOS DOS DIÁRIOS -->
+    <!-- SEÇÃO 4: CARROSSEL INFINITO DE FRAGMENTOS DOS DIÁRIOS -->
     <section id="diaries" class="section-container">
         <span class="manifesto-label">Série: Escrita Autobiográfica</span>
         <h2 class="main-heading">Os Diários Deslacrados</h2>
@@ -240,7 +269,6 @@
         <div class="album-scroll-wrapper" id="albumWrapper">
             <div class="album-track" id="albumTrack">
                 
-                <!-- ENVELOPE 1 -->
                 <div class="album-item">
                     <div class="envelope-zone">
                         <div class="envelope-front">
@@ -258,7 +286,6 @@
                     </div>
                 </div>
 
-                <!-- ENVELOPE 2 -->
                 <div class="album-item">
                     <div class="envelope-zone">
                         <div class="envelope-front">
@@ -275,7 +302,6 @@
                     </div>
                 </div>
 
-                <!-- ENVELOPE 3 -->
                 <div class="album-item">
                     <div class="envelope-zone">
                         <div class="envelope-front">
@@ -292,7 +318,6 @@
                     </div>
                 </div>
 
-                <!-- ENVELOPE 4 -->
                 <div class="album-item">
                     <div class="envelope-zone">
                         <div class="envelope-front">
@@ -314,11 +339,10 @@
     </section>
 
     <script>
-        // ENGENHARIA DE ROLAGEM EM LOOP INFINITO (OS ENVELOPES)
+        // ENGENHARIA DE ROLAGEM EM LOOP INFINITO
         const scrollWrapper = document.getElementById('albumWrapper');
         const scrollTrack = document.getElementById('albumTrack');
 
-        // Duplica os envelopes originais para criar a esteira infinita arquivística
         const originalItems = Array.from(scrollTrack.children);
         originalItems.forEach(item => {
             const clone = item.cloneNode(true);

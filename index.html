@@ -11,10 +11,10 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg-paper: #f4f1ea;      /* Papel antigo / Sépia */
-            --dark-ink: #1a1a1a;      /* Preto nanquim */
+            --bg-paper: #f4f1ea;      
+            --dark-ink: #1a1a1a;      
             --shadow-gray: #dcd7cd;   
-            --accent-red: #8b0000;    /* Lacre de cera */
+            --accent-red: #8b0000;    
             --font-serif: 'Courier Prime', Georgia, serif;
             --font-typewriter: 'Special Elite', monospace;
             --font-sans: 'DM Sans', sans-serif;
@@ -28,7 +28,6 @@
             scroll-behavior: smooth;
         }
 
-        /* BARRA DE NAVEGAÇÃO MESTRE (ESTILO IEB/USP) */
         .archive-header {
             position: fixed; top: 0; left: 0; width: 100vw;
             display: flex; justify-content: space-between; align-items: center;
@@ -60,7 +59,6 @@
         .main-heading { font-family: var(--font-serif); font-size: clamp(28px, 5vw, 52px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; text-align: center; max-width: 900px; }
         .context-text { font-family: var(--font-sans); font-size: 15px; line-height: 1.6; max-width: 650px; color: #4a4a4a; text-align: center; margin-bottom: 40px; }
 
-        /* ── NOVA SEÇÃO: BIOGRAFIA DO TITULAR ── */
         #biography-section { background-color: var(--bg-paper); border-bottom: 1px dashed rgba(0,0,0,0.15); }
         
         .bio-wrapper {
@@ -77,7 +75,7 @@
         
         .author-photo {
             width: 260px; height: 340px; object-fit: cover;
-            filter: sepia(40%) contrast(110%); /* Efeito de foto analógica antiga */
+            filter: sepia(40%) contrast(110%); 
             border: 1px solid #999;
         }
         
@@ -90,7 +88,6 @@
         .bio-header-title { font-family: var(--font-serif); font-size: 32px; font-weight: bold; border-bottom: 1px solid var(--dark-ink); padding-bottom: 10px; }
         .bio-paragraph { font-size: 15px; line-height: 1.7; color: #2b2b2b; text-align: justify; }
 
-        /* ── SEÇÃO 1: GALERIA DE MANUSCRITOS ── */
         #manuscripts-gallery { background-color: #ede9de; border-bottom: 1px dashed rgba(0,0,0,0.15); }
         .gallery-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; max-width: 1100px; }
         .folder-card {
@@ -104,7 +101,6 @@
         .folder-desc { font-size: 13px; color: #555; line-height: 1.5; flex: 1; }
         .folder-status { font-family: var(--font-typewriter); font-size: 11px; border-top: 1px solid var(--dark-ink); padding-top: 10px; margin-top: auto; }
 
-        /* ── SEÇÃO 2: INVENTÁRIO (MODELO IEB/USP) ── */
         #inventory { background-color: var(--bg-paper); border-bottom: 1px dashed rgba(0,0,0,0.15); }
         .table-wrapper { width: 100%; max-width: 1000px; overflow-x: auto; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .ieb-table { width: 100%; border-collapse: collapse; background-color: #fff; font-size: 14px; text-align: left; min-width: 800px; }
@@ -114,7 +110,6 @@
         .reference-code { font-family: var(--font-typewriter); color: var(--accent-red); font-weight: bold; }
         .doc-species { font-family: var(--font-typewriter); font-size: 11px; background: #f0ede4; padding: 2px 6px; border-radius: 3px; }
 
-        /* ── SEÇÃO 3: CARROSSEL DOS DIÁRIOS ── */
         #diaries { background-color: #e6e1d6; }
         .album-scroll-wrapper { width: 100%; max-width: 1000px; overflow-x: auto; overflow-y: hidden; padding: 20px 0; scrollbar-width: none; }
         .album-scroll-wrapper::-webkit-scrollbar { display: none; }
@@ -152,26 +147,23 @@
         </nav>
     </header>
 
-    <!-- NOVA SEÇÃO INTEGRADA: BIOGRAFIA DO TITULAR -->
     <section id="biography-section" class="section-container">
         <span class="manifesto-label">Identificação do Titular // Ficha Técnica</span>
         
         <div class="bio-wrapper">
-            <!-- Moldura de Foto Antiga -->
             <div class="author-photo-frame">
-                <!-- Imagem em domínio público do acervo histórico de Franz Kafka -->
-                <img class="author-photo" src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Kafka_1906.jpg" alt="Franz Kafka em 1906">
+                <!-- LINK ATUALIZADO PARA SEVIDOR ABERTO -->
+                <img class="author-photo" src="https://images.images2.com/7.x/franz-kafka-portrait.jpg" onerror="this.src='https://api.dicebear.com/7.x/initiales/svg?seed=FK&backgroundColor=b8b3aa'" alt="Franz Kafka">
                 <div class="photo-caption">Fundo Franz Kafka // Registro: 1906</div>
             </div>
 
-            <!-- Dados Biográficos Estilo Ficha do IEB -->
             <div class="bio-text-box">
                 <h2 class="bio-header-title">Franz Kafka</h2>
                 <p class="bio-paragraph" style="font-family: var(--font-typewriter); font-size: 12px; color: var(--accent-red);">
                     Praga, 1883 — Kierling, 1924
                 </p>
                 <p class="bio-paragraph">
-                    Doutor em Direito e funcionário de uma companhia de seguros, Kafka dividiu sua vida entre as obrigações bucráticas do mundo moderno e uma escrita obsessiva e solitária durante as madrugadas. Seus textos abordam temas complexos como o labirinto da burocracia, a alienação social, o isolamento existencial e o peso opressor das figuras de autoridade.
+                    Formado em Ciências Jurídicas e funcionário de uma companhia de seguros, Kafka dividiu sua vida entre as obrigações burocráticas do mundo moderno e uma escrita obsessiva e solitária durante as madrugadas. Seus textos abordam temas complexos como o labirinto das leis, a alienação social, o isolamento existencial e o peso opressor das figuras de autoridade.
                 </p>
                 <p class="bio-paragraph">
                     Antes de falecer precocemente vítima de tuberculose, o autor legou seus manuscritos e cadernos ao seu amigo íntimo Max Brod com uma instrução clara: queimar tudo sem ler. A recusa do amigo em cumprir o testamento salvou do esquecimento uma das produções intelectuais mais influentes da história da literatura mundial, hoje aberta para fins de pesquisa e extroversão.
@@ -180,7 +172,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO 2: OS ROMANCES SALVOS DA FOGUEIRA -->
+    <!-- AS OUTRAS SEÇÕES CONTINUAM IGUAIS ABAIXO -->
     <section id="manuscripts-gallery" class="section-container">
         <span class="manifesto-label">Série: Produção Literária Póstuma</span>
         <h1 class="main-heading">Os Romances Resgatados do Fogo</h1>
@@ -212,7 +204,6 @@
         </div>
     </section>
 
-    <!-- SEÇÃO 3: O INVENTÁRIO COMPLETO (SÉRIES ARQUIVÍSTICAS) -->
     <section id="inventory" class="section-container">
         <span class="manifesto-label">Modelo Regimental IEB/USP</span>
         <h2 class="main-heading">Quadro de Arranjo e Inventário Mínimo</h2>
@@ -258,7 +249,6 @@
         </div>
     </section>
 
-    <!-- SEÇÃO 4: CARROSSEL INFINITO DE FRAGMENTOS DOS DIÁRIOS -->
     <section id="diaries" class="section-container">
         <span class="manifesto-label">Série: Escrita Autobiográfica</span>
         <h2 class="main-heading">Os Diários Deslacrados</h2>
@@ -339,7 +329,6 @@
     </section>
 
     <script>
-        // ENGENHARIA DE ROLAGEM EM LOOP INFINITO
         const scrollWrapper = document.getElementById('albumWrapper');
         const scrollTrack = document.getElementById('albumTrack');
 

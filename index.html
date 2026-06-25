@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafka Sem Inseto // Arquivo Reverso</title>
+    <title>Fundo Franz Kafka // Arquivo Reverso</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- Fontes literárias e monoespaçadas para dar cara de máquina de escrever e arquivo antigo -->
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=DM+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg-paper: #f4f1ea;      /* Cor de papel antigo/sépia */
-            --dark-ink: #1a1a1a;      /* Preto tinta de caneta */
-            --shadow-gray: #dcd7cd;   /* Cinza para sombras suaves */
-            --accent-red: #8b0000;    /* Vermelho lacre de cera (detalhes) */
+            --bg-paper: #f4f1ea;      /* Papel antigo / Sépia */
+            --dark-ink: #1a1a1a;      /* Preto nanquim */
+            --shadow-gray: #dcd7cd;   
+            --accent-red: #8b0000;    /* Lacre de cera */
             --font-serif: 'Courier Prime', Georgia, serif;
             --font-typewriter: 'Special Elite', monospace;
             --font-sans: 'DM Sans', sans-serif;
@@ -29,241 +28,316 @@
             scroll-behavior: smooth;
         }
 
-        /* HEADER INSPIRADO NO IEB/USP */
+        /* BARRA DE NAVEGAÇÃO MESTRE (ESTILO IEB/USP) */
         .archive-header {
             position: fixed; top: 0; left: 0; width: 100vw;
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 40px;
-            background: rgba(244, 241, 234, 0.9);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(244, 241, 234, 0.96);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 2px double var(--dark-ink);
         }
 
-        .archive-identity {
-            display: flex; flex-direction: column;
-        }
+        .archive-identity { display: flex; flex-direction: column; }
+        .archive-title { font-family: var(--font-typewriter); font-size: 18px; font-weight: bold; }
+        .archive-subtitle { font-family: var(--font-serif); font-size: 11px; font-style: italic; color: var(--accent-red); margin-top: 2px; }
 
-        .archive-title {
-            font-family: var(--font-typewriter);
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: -0.5px;
-        }
-
-        .archive-subtitle {
-            font-family: var(--font-serif);
-            font-size: 11px;
-            font-style: italic;
-            color: var(--accent-red);
-            margin-top: 2px;
-        }
-
-        .archive-nav {
-            display: flex; gap: 20px;
-        }
-
+        .archive-nav { display: flex; gap: 20px; }
         .archive-nav a {
-            font-family: var(--font-typewriter);
-            font-size: 13px;
-            color: var(--dark-ink);
-            text-decoration: none;
-            padding: 5px 10px;
-            border: 1px transparent solid;
-            transition: all 0.2s ease;
+            font-family: var(--font-typewriter); font-size: 13px; color: var(--dark-ink);
+            text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: all 0.2s;
         }
+        .archive-nav a:hover { border-bottom: 1px solid var(--dark-ink); background-color: rgba(0,0,0,0.03); }
 
-        .archive-nav a:hover {
-            border-bottom: 1px solid var(--dark-ink);
-            background-color: rgba(0,0,0,0.03);
-        }
-
-        /* ESTRUTURA DAS SEÇÕES */
         .section-container {
-            min-height: 100vh;
-            width: 100vw;
+            min-height: 100vh; width: 100vw;
             padding: 140px 40px 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px dashed rgba(0,0,0,0.1);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
 
-        /* SEÇÃO 1: A CAPA PROIBIDA */
-        #cover-protest {
-            background-color: var(--bg-paper);
-            text-align: center;
+        .manifesto-label { font-family: var(--font-typewriter); font-size: 12px; color: var(--accent-red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .main-heading { font-family: var(--font-serif); font-size: clamp(28px, 5vw, 52px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; text-align: center; max-width: 900px; }
+        .context-text { font-family: var(--font-sans); font-size: 15px; line-height: 1.6; max-width: 650px; color: #4a4a4a; text-align: center; margin-bottom: 40px; }
+
+        /* ── SEÇÃO 1: GALERIA DE MANUSCRITOS RESGATADOS ── */
+        #manuscripts-gallery { background-color: var(--bg-paper); border-bottom: 1px dashed rgba(0,0,0,0.15); }
+        
+        .gallery-grid {
+            display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; max-width: 1100px;
         }
 
-        .manifesto-label {
-            font-family: var(--font-typewriter);
-            font-size: 12px;
-            color: var(--accent-red);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .main-heading {
-            font-family: var(--font-serif);
-            font-size: clamp(32px, 6vw, 64px);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-
-        .context-text {
-            font-family: var(--font-sans);
-            font-size: 15px;
-            line-height: 1.6;
-            max-width: 600px;
-            color: #4a4a4a;
-            margin-bottom: 40px;
-        }
-
-        /* COMPONENTE DA CAPA INTERATIVA */
-        .book-frame {
-            background: #fff;
-            border: 1px solid #c8c3bc;
-            padding: 25px;
-            width: 100%;
-            max-width: 340px;
-            height: 480px;
-            box-shadow: 10px 10px 30px var(--shadow-gray);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .book-frame:hover {
-            transform: translateY(-5px);
-        }
-
-        .book-meta-top {
-            font-family: var(--font-typewriter);
-            font-size: 14px;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--dark-ink);
-            width: 100%;
-            padding-bottom: 10px;
-        }
-
-        /* Centro da capa: sem inseto, apenas o vazio e a poltrona sugerida */
-        .book-art-zone {
-            flex: 1;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: rgba(0,0,0,0.1);
-            border: 1px dotted rgba(0,0,0,0.1);
-            margin: 20px 0;
+        .folder-card {
+            background: #fff; border: 1px solid #c8c3bc; padding: 25px;
+            width: 280px; height: 38px; min-height: 380px;
+            box-shadow: 8px 8px 25px var(--shadow-gray);
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
         }
+        .folder-card:hover { transform: translateY(-8px); box-shadow: 12px 12px 30px #b8b3aa; }
 
-        .book-art-zone::before {
-            content: "🚪"; /* Uma porta entreaberta, sugerindo o quarto do Gregor */
-            font-size: 64px;
-            filter: grayscale(100%);
-            opacity: 0.8;
+        .folder-tag { font-family: var(--font-typewriter); font-size: 11px; color: var(--accent-red); border-bottom: 1px solid #e8e4da; padding-bottom: 6px; }
+        .folder-title { font-family: var(--font-serif); font-size: 20px; font-weight: bold; margin: 15px 0 10px; }
+        .folder-desc { font-size: 13px; color: #555; line-height: 1.5; flex: 1; }
+        .folder-status { font-family: var(--font-typewriter); font-size: 11px; border-top: 1px solid var(--dark-ink); padding-top: 10px; margin-top: auto; }
+
+        /* ── SEÇÃO 2: INVENTÁRIO (MODELO IEB/USP) ── */
+        #inventory { background-color: #ede9de; border-bottom: 1px dashed rgba(0,0,0,0.15); }
+        .table-wrapper { width: 100%; max-width: 1000px; overflow-x: auto; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .ieb-table { width: 100%; border-collapse: collapse; background-color: #fff; font-size: 14px; text-align: left; min-width: 800px; }
+        .ieb-table th { background-color: var(--dark-ink); color: var(--bg-paper); font-family: var(--font-typewriter); font-weight: normal; padding: 14px 18px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .ieb-table td { padding: 16px 18px; border-bottom: 1px solid #e8e4da; line-height: 1.5; color: #2b2b2b; vertical-align: top; }
+        .ieb-table tr:hover { background-color: #fcfbfa; }
+        .reference-code { font-family: var(--font-typewriter); color: var(--accent-red); font-weight: bold; }
+        .doc-species { font-family: var(--font-typewriter); font-size: 11px; background: #f0ede4; padding: 2px 6px; border-radius: 3px; }
+
+        /* ── SEÇÃO 3: CARROSSEL DOS DIÁRIOS (ROLA PRO LADO!) ── */
+        #diaries { background-color: #e6e1d6; }
+        
+        .album-scroll-wrapper {
+            width: 100%; max-width: 1000px; 
+            overflow-x: auto; overflow-y: hidden;
+            padding: 20px 0; scrollbar-width: none; 
+        }
+        .album-scroll-wrapper::-webkit-scrollbar { display: none; }
+        
+        .album-track { display: flex; gap: 120px; padding: 20px; width: max-content; }
+        .album-item { display: flex; flex-direction: column; width: 250px; flex-shrink: 0; }
+        
+        /* O Envelope Secreto do Arquivo */
+        .envelope-zone { position: relative; width: 250px; height: 250px; cursor: pointer; }
+        
+        .envelope-front {
+            position: absolute; inset: 0; background: #e0dacb;
+            border: 2px solid var(--dark-ink); box-shadow: 4px 4px 0 var(--dark-ink);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 5; padding: 20px; text-align: center; transition: box-shadow 0.2s, transform 0.3s;
+        }
+        .envelope-front h3 { font-family: var(--font-typewriter); font-size: 14px; }
+        
+        .paper-inside {
+            position: absolute; top: 10px; left: 10px; width: 230px; height: 230px;
+            background: #fff; border: 1px solid #999; z-index: 4; padding: 20px;
+            display: flex; flex-direction: column; justify-content: center;
+            font-family: var(--font-serif); font-size: 11px; line-height: 1.4;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .book-title-bottom {
-            font-family: var(--font-serif);
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            width: 100%;
-            padding-top: 10px;
-            border-top: 1px solid var(--dark-ink);
-        }
+        /* Efeito de puxar o papel para fora do envelope */
+        .envelope-zone:hover .paper-inside { transform: translateY(-70px) rotate(-2deg); z-index: 6; }
+        .envelope-zone:hover .envelope-front { box-shadow: 6px 6px 0 var(--accent-red); }
 
-        /* ACESSIBILIDADE AUDIOVISUAL (USOS E USUÁRIOS) */
-        .audio-description-trigger {
-            margin-top: 30px;
-            background: var(--dark-ink);
-            color: var(--bg-paper);
-            border: none;
-            padding: 10px 20px;
-            font-family: var(--font-typewriter);
-            font-size: 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .audio-description-trigger:hover {
-            background: var(--accent-red);
-        }
-
-        .hidden-description {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: #e9e5db;
-            border-left: 3px solid var(--accent-red);
-            max-width: 600px;
-            text-align: left;
-            font-size: 13px;
-            line-height: 1.5;
-        }
+        .diary-meta { margin-top: 15px; font-family: var(--font-sans); }
+        .diary-title { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+        .diary-date { font-family: var(--font-typewriter); font-size: 11px; color: var(--accent-red); }
     </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO DE ARQUIVO -->
     <header class="archive-header">
         <div class="archive-identity">
-            <span class="archive-title">KAFKA // ARQUIVO REVERSO</span>
-            <span class="archive-subtitle">Extextroversão, Acesso e Intenção Original</span>
+            <span class="archive-title">FUNDO FRANZ KAFKA</span>
+            <span class="archive-subtitle">Gestão de Acervos Pessoais // Modelo de Extroversão</span>
         </div>
         <nav class="archive-nav">
-            <a href="#cover-protest">01. A Capa</a>
-            <a href="#inventory">02. Inventário</a>
-            <a href="#diaries">03. Diários</a>
+            <a href="#manuscripts-gallery">01. Manuscritos</a>
+            <a href="#inventory">02. Inventário Técnico</a>
+            <a href="#diaries">03. Diários do Fundo</a>
         </nav>
     </header>
 
-    <!-- SEÇÃO 1: O MANIFESTO DA CAPA -->
-    <section id="cover-protest" class="section-container">
-        <span class="manifesto-label">Diretriz de 1915 // Carta a Editora</span>
-        <h1 class="main-heading">"O inseto não pode ser desenhado."</h1>
+    <!-- SEÇÃO 1: OS ROMANCES SALVOS DA FOGUEIRA -->
+    <section id="manuscripts-gallery" class="section-container">
+        <span class="manifesto-label">Série: Produção Literária Póstuma</span>
+        <h1 class="main-heading">Os Romances Resgatados do Fogo</h1>
         <p class="context-text">
-            Em respeito à proibição explícita de Franz Kafka, este arquivo recusa capas comerciais que reduzem sua obra a uma barata literal. Abaixo, a representação da capa conforme a instrução original do autor.
+            Em 1924, Kafka ordenou que toda sua obra inacabada fosse queimada. Esta seção reúne os dossiês das três grandes obras-primas salvas e processadas para acesso público universal.
         </p>
 
-        <!-- A CAPA DO LIVRO -->
-        <div class="book-frame">
-            <div class="book-meta-top">FRANZ KAFKA</div>
-            <div class="book-art-zone"></div>
-            <div class="book-title-bottom">A Metamorfose</div>
-        </div>
+        <div class="gallery-grid">
+            <!-- ROMANCE 1 -->
+            <div class="folder-card">
+                <span class="folder-tag">CÓD: FK-ROM-01</span>
+                <h3 class="folder-title">O Processo</h3>
+                <p class="folder-desc">Manuscrito fragmentado escrito entre 1914 e 1915. Conta a história de Josef K., um homem preso e julgado por um tribunal inacessível sem saber o motivo de seu crime.</p>
+                <div class="folder-status">✓ STATUS: SALVO / PUBLICADO</div>
+            </div>
 
-        <!-- RECURSO DE ACESSIBILIDADE (AUDIODESCRIÇÃO) -->
-        <button class="audio-description-trigger" onclick="toggleAudioDesc()">👁️ Audiodescrição da Capa</button>
-        <div class="hidden-description" id="descBox">
-            <strong>Audiodescrição para Usuários (Acessibilidade Arquivística):</strong><br>
-            A capa apresenta um fundo inteiramente branco e minimalista. No topo, o nome de Franz Kafka em letras pretas monoespaçadas. No centro, não há nenhuma ilustração de inseto, barata ou criatura; há apenas a silhueta cinza e sutil de uma porta entreaberta que dá para um quarto escuro e vazio, evocando o isolamento absoluto de Gregor Samsa. Na base, o título "A Metamorfose" encerra a composição em letras serifadas clássicas.
+            <!-- ROMANCE 2 -->
+            <div class="folder-card">
+                <span class="folder-tag">CÓD: FK-ROM-02</span>
+                <h3 class="folder-title">O Castelo</h3>
+                <p class="folder-desc">Iniciado em 1922, o romance permaneceu literalmente inacabado, terminando no meio de uma frase. Retrata a luta burocrática e infinita do agrimensor K.</p>
+                <div class="folder-status">✓ STATUS: SALVO / PUBLICADO</div>
+            </div>
+
+            <!-- ROMANCE 3 -->
+            <div class="folder-card">
+                <span class="folder-tag">CÓD: FK-ROM-03</span>
+                <h3 class="folder-title">América</h3>
+                <p class="folder-desc">Também conhecido como "O Desaparecido". O primeiro romance de Kafka, escrito em cadernos esparsos, narrando a jornada labiríntica do jovem imigrante Karl Rossmann.</p>
+                <div class="folder-status">✓ STATUS: SALVO / PUBLICADO</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: O INVENTÁRIO COMPLETO (SÉRIES ARQUIVÍSTICAS) -->
+    <section id="inventory" class="section-container">
+        <span class="manifesto-label">Modelo Regimental IEB/USP</span>
+        <h2 class="main-heading">Quadro de Arranjo e Inventário Mínimo</h2>
+        <p class="context-text">
+            Mapeamento científico das Seções e Itens que compõem o Fundo Franz Kafka, organizados de acordo com os padrões formais de descrição documental.
+        </p>
+
+        <div class="table-wrapper">
+            <table class="ieb-table">
+                <thead>
+                    <tr>
+                        <th>Código de Ref.</th>
+                        <th>Seção / Espécie</th>
+                        <th>Título do Item Documental</th>
+                        <th>Limites Cronológicos</th>
+                        <th>Descrição do Conteúdo Teórico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="reference-code">BR USP/IEB FK.COR</td>
+                        <td><span class="doc-species">Correspondência</span></td>
+                        <td><strong>Cartas a Milena Jesenská</strong></td>
+                        <td>1920 - 1923</td>
+                        <td>Dossiê contendo cartas e bilhetes enviados à tradutora Milena. Revela reflexões profundas sobre a língua escrita, o medo, o isolamento e o ato de escrever como um processo de desnudamento da alma.</td>
+                    </tr>
+                    <tr>
+                        <td class="reference-code">BR USP/IEB FK.DIA</td>
+                        <td><span class="doc-species">Diário Íntimo</span></td>
+                        <td><strong>Os Cadernos de Viagem e Sonhos</strong></td>
+                        <td>1910 - 1923</td>
+                        <td>Doze cadernos manuscritos contendo a escrita autobiográfica diária de Kafka, livre de filtros comerciais. Base para a criação de toda a sua mitologia pessoal.</td>
+                    </tr>
+                    <tr>
+                        <td class="reference-code">BR USP/IEB FK.LIT</td>
+                        <td><span class="doc-species">Manuscrito</span></td>
+                        <td><strong>Carta ao Pai (Brief an den Vater)</strong></td>
+                        <td>Novembro, 1919</td>
+                        <td>Texto de teor confessional com mais de 100 páginas manuscritas, no qual o autor analisa a figura gigantesca e opressora do pai, elemento chave de sua psicologia e obra.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: CARROSSEL INFINITO DE FRAGMENTOS DOS DIÁRIOS -->
+    <section id="diaries" class="section-container">
+        <span class="manifesto-label">Série: Escrita Autobiográfica</span>
+        <h2 class="main-heading">Os Diários Deslacrados</h2>
+        <p class="context-text">
+            Passe o mouse por cima dos envelopes para puxar os papéis originais. Use a rodinha do mouse para girar a esteira do arquivo infinitamente.
+        </p>
+
+        <div class="album-scroll-wrapper" id="albumWrapper">
+            <div class="album-track" id="albumTrack">
+                
+                <!-- ENVELOPE 1 -->
+                <div class="album-item">
+                    <div class="envelope-zone">
+                        <div class="envelope-front">
+                            <h3>CONFISSIONAL</h3>
+                            <span style="font-size: 18px; margin-top: 10px;">✉</span>
+                        </div>
+                        <div class="paper-inside">
+                            "A Alemanha declarou guerra à Rússia. — À tarde, escola de natação."<br><br>
+                            <em>(Um registro real do impacto do mundo externo no cotidiano do autor)</em>
+                        </div>
+                    </div>
+                    <div class="diary-meta">
+                        <p class="diary-title">Fragmento de 1914</p>
+                        <p class="diary-date">Caderno nº 3</p>
+                    </div>
+                </div>
+
+                <!-- ENVELOPE 2 -->
+                <div class="album-item">
+                    <div class="envelope-zone">
+                        <div class="envelope-front">
+                            <h3>PROCESSO CRITICO</h3>
+                            <span style="font-size: 18px; margin-top: 10px;">✉</span>
+                        </div>
+                        <div class="paper-inside">
+                            "Minha vida é a hesitação antes do nascimento. Eu ainda não nasci, mas sinto as dores do mundo sobre a minha mesa de trabalho."
+                        </div>
+                    </div>
+                    <div class="diary-meta">
+                        <p class="diary-title">A Angústia da Escrita</p>
+                        <p class="diary-date">Caderno nº 5</p>
+                    </div>
+                </div>
+
+                <!-- ENVELOPE 3 -->
+                <div class="album-item">
+                    <div class="envelope-zone">
+                        <div class="envelope-front">
+                            <h3>SOBRE O SONHO</h3>
+                            <span style="font-size: 18px; margin-top: 10px;">✉</span>
+                        </div>
+                        <div class="paper-inside">
+                            "A capacidade de descrever minha vida interior baseada nos meus sonhos é o que me mantém vivo. Fora disso, sou apenas o vazio."
+                        </div>
+                    </div>
+                    <div class="diary-meta">
+                        <p class="diary-title">A Lógica Noturna</p>
+                        <p class="diary-date">Caderno nº 7</p>
+                    </div>
+                </div>
+
+                <!-- ENVELOPE 4 -->
+                <div class="album-item">
+                    <div class="envelope-zone">
+                        <div class="envelope-front">
+                            <h3>REGISTRO AVULSO</h3>
+                            <span style="font-size: 18px; margin-top: 10px;">✉</span>
+                        </div>
+                        <div class="paper-inside">
+                            "Escrever é a recompensa por um serviço prestado ao diabo. Este declínio na intimidade é o que chamam de literatura."
+                        </div>
+                    </div>
+                    <div class="diary-meta">
+                        <p class="diary-title">O Pacto Literário</p>
+                        <p class="diary-date">Caderno nº 11</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <script>
-        // Função para abrir/fechar a audiodescrição (Acessibilidade)
-        function toggleAudioDesc() {
-            const desc = document.getElementById('descBox');
-            if (desc.style.display === 'block') {
-                desc.style.display = 'none';
-            } else {
-                desc.style.display = 'block';
+        // ENGENHARIA DE ROLAGEM EM LOOP INFINITO (OS ENVELOPES)
+        const scrollWrapper = document.getElementById('albumWrapper');
+        const scrollTrack = document.getElementById('albumTrack');
+
+        // Duplica os envelopes originais para criar a esteira infinita arquivística
+        const originalItems = Array.from(scrollTrack.children);
+        originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            scrollTrack.appendChild(clone);
+        });
+
+        scrollWrapper.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            scrollWrapper.scrollLeft += evt.deltaY * 1.2;
+            
+            const maxScrollLeft = scrollTrack.scrollWidth / 2;
+
+            if (scrollWrapper.scrollLeft >= maxScrollLeft) {
+                scrollWrapper.scrollLeft -= maxScrollLeft;
             }
-        }
+            else if (scrollWrapper.scrollLeft <= 0) {
+                scrollWrapper.scrollLeft += maxScrollLeft;
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>

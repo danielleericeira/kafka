@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafka Sem Inseto // Arquivo Reverso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Fontes literárias e monoespaçadas para dar cara de máquina de escrever e arquivo antigo -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=DM+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-paper: #f4f1ea;      /* Cor de papel antigo/sépia */
+            --dark-ink: #1a1a1a;      /* Preto tinta de caneta */
+            --shadow-gray: #dcd7cd;   /* Cinza para sombras suaves */
+            --accent-red: #8b0000;    /* Vermelho lacre de cera (detalhes) */
+            --font-serif: 'Courier Prime', Georgia, serif;
+            --font-typewriter: 'Special Elite', monospace;
+            --font-sans: 'DM Sans', sans-serif;
+        }
+
+        html, body {
+            background-color: var(--bg-paper);
+            font-family: var(--font-sans);
+            color: var(--dark-ink);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* HEADER INSPIRADO NO IEB/USP */
+        .archive-header {
+            position: fixed; top: 0; left: 0; width: 100vw;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 40px;
+            background: rgba(244, 241, 234, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            border-bottom: 2px double var(--dark-ink);
+        }
+
+        .archive-identity {
+            display: flex; flex-direction: column;
+        }
+
+        .archive-title {
+            font-family: var(--font-typewriter);
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        .archive-subtitle {
+            font-family: var(--font-serif);
+            font-size: 11px;
+            font-style: italic;
+            color: var(--accent-red);
+            margin-top: 2px;
+        }
+
+        .archive-nav {
+            display: flex; gap: 20px;
+        }
+
+        .archive-nav a {
+            font-family: var(--font-typewriter);
+            font-size: 13px;
+            color: var(--dark-ink);
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px transparent solid;
+            transition: all 0.2s ease;
+        }
+
+        .archive-nav a:hover {
+            border-bottom: 1px solid var(--dark-ink);
+            background-color: rgba(0,0,0,0.03);
+        }
+
+        /* ESTRUTURA DAS SEÇÕES */
+        .section-container {
+            min-height: 100vh;
+            width: 100vw;
+            padding: 140px 40px 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        /* SEÇÃO 1: A CAPA PROIBIDA */
+        #cover-protest {
+            background-color: var(--bg-paper);
+            text-align: center;
+        }
+
+        .manifesto-label {
+            font-family: var(--font-typewriter);
+            font-size: 12px;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .main-heading {
+            font-family: var(--font-serif);
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .context-text {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 600px;
+            color: #4a4a4a;
+            margin-bottom: 40px;
+        }
+
+        /* COMPONENTE DA CAPA INTERATIVA */
+        .book-frame {
+            background: #fff;
+            border: 1px solid #c8c3bc;
+            padding: 25px;
+            width: 100%;
+            max-width: 340px;
+            height: 480px;
+            box-shadow: 10px 10px 30px var(--shadow-gray);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .book-frame:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-meta-top {
+            font-family: var(--font-typewriter);
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--dark-ink);
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        /* Centro da capa: sem inseto, apenas o vazio e a poltrona sugerida */
+        .book-art-zone {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: rgba(0,0,0,0.1);
+            border: 1px dotted rgba(0,0,0,0.1);
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .book-art-zone::before {
+            content: "🚪"; /* Uma porta entreaberta, sugerindo o quarto do Gregor */
+            font-size: 64px;
+            filter: grayscale(100%);
+            opacity: 0.8;
+        }
+
+        .book-title-bottom {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 100%;
+            padding-top: 10px;
+            border-top: 1px solid var(--dark-ink);
+        }
+
+        /* ACESSIBILIDADE AUDIOVISUAL (USOS E USUÁRIOS) */
+        .audio-description-trigger {
+            margin-top: 30px;
+            background: var(--dark-ink);
+            color: var(--bg-paper);
+            border: none;
+            padding: 10px 20px;
+            font-family: var(--font-typewriter);
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .audio-description-trigger:hover {
+            background: var(--accent-red);
+        }
+
+        .hidden-description {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9e5db;
+            border-left: 3px solid var(--accent-red);
+            max-width: 600px;
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO DE ARQUIVO -->
+    <header class="archive-header">
+        <div class="archive-identity">
+            <span class="archive-title">KAFKA // ARQUIVO REVERSO</span>
+            <span class="archive-subtitle">Extextroversão, Acesso e Intenção Original</span>
+        </div>
+        <nav class="archive-nav">
+            <a href="#cover-protest">01. A Capa</a>
+            <a href="#inventory">02. Inventário</a>
+            <a href="#diaries">03. Diários</a>
+        </nav>
+    </header>
+
+    <!-- SEÇÃO 1: O MANIFESTO DA CAPA -->
+    <section id="cover-protest" class="section-container">
+        <span class="manifesto-label">Diretriz de 1915 // Carta a Editora</span>
+        <h1 class="main-heading">"O inseto não pode ser desenhado."</h1>
+        <p class="context-text">
+            Em respeito à proibição explícita de Franz Kafka, este arquivo recusa capas comerciais que reduzem sua obra a uma barata literal. Abaixo, a representação da capa conforme a instrução original do autor.
+        </p>
+
+        <!-- A CAPA DO LIVRO -->
+        <div class="book-frame">
+            <div class="book-meta-top">FRANZ KAFKA</div>
+            <div class="book-art-zone"></div>
+            <div class="book-title-bottom">A Metamorfose</div>
+        </div>
+
+        <!-- RECURSO DE ACESSIBILIDADE (AUDIODESCRIÇÃO) -->
+        <button class="audio-description-trigger" onclick="toggleAudioDesc()">👁️ Audiodescrição da Capa</button>
+        <div class="hidden-description" id="descBox">
+            <strong>Audiodescrição para Usuários (Acessibilidade Arquivística):</strong><br>
+            A capa apresenta um fundo inteiramente branco e minimalista. No topo, o nome de Franz Kafka em letras pretas monoespaçadas. No centro, não há nenhuma ilustração de inseto, barata ou criatura; há apenas a silhueta cinza e sutil de uma porta entreaberta que dá para um quarto escuro e vazio, evocando o isolamento absoluto de Gregor Samsa. Na base, o título "A Metamorfose" encerra a composição em letras serifadas clássicas.
+        </div>
+    </section>
+
+    <script>
+        // Função para abrir/fechar a audiodescrição (Acessibilidade)
+        function toggleAudioDesc() {
+            const desc = document.getElementById('descBox');
+            if (desc.style.display === 'block') {
+                desc.style.display = 'none';
+            } else {
+                desc.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
